@@ -7,6 +7,7 @@
   <title>Assigment1</title>
   <script>
     //  Levi 
+    // Q5
      onload=function()
         {
             let myTextbox = document.createElement("input")
@@ -32,8 +33,38 @@
             document.body.appendChild(myButton)
             
             document.body.appendChild(document.createElement("br"))
-  
+       
+        // Q6
+        myButton.onclick = function(){
+          if (myTextbox.value == "" && myTextbox2.value == "" ){
+             myTextbox.style.backgroundColor = "pink";
+             myTextbox2.style.backgroundColor = "pink";
+            alert("wrong");
+          }
+          else if (myTextbox2.value == ""){
+            myTextbox2.style.backgroundColor = "pink";
+            alert("wrong");
+          }
+          else if (myTextbox.value == "" ){
+            myTextbox.style.backgroundColor = "pink";
+            alert("wrong");
+          }
+          else if (myTextbox.value.length > "1" && myTextbox2.value.length >"1") {
+            myTextbox.style.backgroundColor = "pink";
+            myTextbox2.style.backgroundColor = "pink";
+            alert("wrong");
+          }
+          else if (myTextbox.value.length > "1" ){
+            myTextbox.style.backgroundColor = "pink";
+            alert("wrong");
+          }
+          else if (myTextbox2.value.length > "1" ){
+            myTextbox2.style.backgroundColor = "pink";
+            alert("wrong");
+          }
+
         }
+      }
   </script>
 </head>
 <body>
