@@ -7,7 +7,7 @@
     <title>Assigment1</title>
     <script>
       //  Levi
-      // Q5
+      // Requirement-5
       onload = function () {
         let myTextbox = document.createElement("input");
         myTextbox.type = "text";
@@ -33,7 +33,7 @@
 
         document.body.appendChild(document.createElement("br"));
 
-        //Q7
+        //Requirement-7
         function Q7() {
           let code1 = myTextbox.value.charCodeAt(0);
           let code2 = myTextbox2.value.charCodeAt(0);
@@ -44,8 +44,7 @@
           }
         }
 
-        
-        // Q6
+        // Requirement-6
         myButton.onclick = function Q6() {
           if (myTextbox.value.length > "1") {
             myTextbox.style.backgroundColor = "pink";
@@ -60,11 +59,13 @@
             myTextbox.value.toLowerCase() <= "z"
           ) {
             myTextbox.style.backgroundColor = "white";
+            Q8();
           } else if (
             myTextbox2.value.toLowerCase() >= "a" &&
             myTextbox2.value.toLowerCase() <= "z"
           ) {
             myTextbox2.style.backgroundColor = "white";
+            Q8();
           } else {
             myTextbox.style.backgroundColor = "pink";
             myTextbox2.style.backgroundColor = "pink";
@@ -73,32 +74,57 @@
             myTextbox2.focus();
           }
           Q7();
-          Q8();
+          moveMe();
         };
-
+        // Requirement-8
         function Q8() {
-          let myimgTop = document.createElement("div")
-          myimgTop.id = "Top"
-          document.body.appendChild(myimgTop)
-          for(let i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++)
-          {
-            let myLetter = String.fromCharCode(i)
-            let myImage = document.createElement('img')
-            myImage.src = "images/letters/" + myLetter + ".png"
-            myImage.id = myLetter
-            myImage.height = 100
-            document.body.appendChild(myImage)
-            
+          let mydivTop = document.createElement("div");
+          mydivTop.id = "Top";
+          document.body.appendChild(mydivTop);
+          for (let i = "a".charCodeAt(0); i <= "z".charCodeAt(0); i++) {
+            let myLetter = String.fromCharCode(i);
+            let myImage = document.createElement("img");
+            myImage.src = "images/letters/" + myLetter + ".png";
+            myImage.id = myLetter;
+            myImage.height = 100;
+            mydivTop.appendChild(myImage);
           }
-          document.getElementsByClassName("img").appendChild(myimgTop);
-          let myimgMiddle = document.createElement("div")
-          myimgMiddle.id = "middle"
-          document.body.appendChild(myimgMiddle)
-          let myimgBottom = document.createElement("div")
-          myimgBottom.id = "Bottom"
-          document.body.appendChild( myimgBottom)
-        }
 
+          let mydivMiddle = document.createElement("div");
+          mydivMiddle.id = "Middle";
+          document.body.appendChild(mydivMiddle);
+          let mydivBottom = document.createElement("div");
+          mydivBottom.id = "Bottom";
+          document.body.appendChild(mydivBottom);
+        }
+        // Requirement-9/10
+        function moveMe() {
+          let images = document.getElementsByTagName("img");
+
+          for (let i = 0; i < images.length; i++) {
+            images[i].ondblclick = function () {
+              // if this clicked img is in the top:
+              if (this.nextSibling != null) {
+                this.parentNode.appendChild(this);
+              } // this IS the last item in its ol; move to the end of the next list
+              else {
+                // if this is the last THINGS item, make it the last LIKE item
+                if (this.parentNode.id == "Top") {
+                  document.getElementById("Middle").appendChild(this);
+                } else if (this.parentNode.id == "Middle") {
+                  document.getElementById("Bottom").appendChild(this);
+                } // the last item in "hate"
+                else {
+                  document.getElementById("Top").appendChild(this);
+                }
+              }
+            };
+          }
+        }
+        onkeydown = mykeydown(){
+          let images = document.getElementsByTagName("img");
+
+        }
       };
     </script>
   </head>
