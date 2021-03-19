@@ -6,126 +6,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assigment1</title>
     <script>
-      //  Levi
-      // Requirement-5
-      onload = function () {
-        let myTextbox = document.createElement("input");
-        myTextbox.type = "text";
-        myTextbox.id = "first";
-        document.body.appendChild(myTextbox);
-        myTextbox.focus();
+            //  Levi
+            // Requirement-5
+            onload = function () {
+              let myTextbox = document.createElement("input");
+              myTextbox.type = "text";
+              myTextbox.id = "first";
+              document.body.appendChild(myTextbox);
+              myTextbox.focus();
 
-        document.body.appendChild(document.createElement("br"));
+              document.body.appendChild(document.createElement("br"));
 
-        let myTextbox2 = document.createElement("input");
-        myTextbox2.type = "text";
-        myTextbox2.id = "last";
-        document.body.appendChild(myTextbox2);
-        myTextbox2.focus();
+              let myTextbox2 = document.createElement("input");
+              myTextbox2.type = "text";
+              myTextbox2.id = "last";
+              document.body.appendChild(myTextbox2);
+              myTextbox2.focus();
 
-        document.body.appendChild(document.createElement("br"));
+              document.body.appendChild(document.createElement("br"));
 
-        let myButton = document.createElement("input");
-        myButton.type = "button";
-        myButton.id = "go";
-        myButton.value = "Go";
-        document.body.appendChild(myButton);
+              let myButton = document.createElement("input");
+              myButton.type = "button";
+              myButton.id = "go";
+              myButton.value = "Go";
+              document.body.appendChild(myButton);
 
-        document.body.appendChild(document.createElement("br"));
+              document.body.appendChild(document.createElement("br"));
 
-        //Requirement-7
-        function Q7() {
-          let code1 = myTextbox.value.charCodeAt(0);
-          let code2 = myTextbox2.value.charCodeAt(0);
-          if (code2 < code1) {
-            myTextbox.style.backgroundColor = "yellow";
-            myTextbox2.style.backgroundColor = "yellow";
-            alert("wrong order");
-          }
-        }
-
-        // Requirement-6
-        myButton.onclick = function Q6() {
-          if (myTextbox.value.length > "1") {
-            myTextbox.style.backgroundColor = "pink";
-            alert("wrong");
-            myTextbox.focus();
-          } else if (myTextbox2.value.length > "1") {
-            myTextbox2.style.backgroundColor = "pink";
-            alert("wrong");
-            myTextbox2.focus();
-          } else if (
-            myTextbox.value.toLowerCase() >= "a" &&
-            myTextbox.value.toLowerCase() <= "z"
-          ) {
-            myTextbox.style.backgroundColor = "white";
-            Q8();
-          } else if (
-            myTextbox2.value.toLowerCase() >= "a" &&
-            myTextbox2.value.toLowerCase() <= "z"
-          ) {
-            myTextbox2.style.backgroundColor = "white";
-            Q8();
-          } else {
-            myTextbox.style.backgroundColor = "pink";
-            myTextbox2.style.backgroundColor = "pink";
-            myTextbox.focus();
-            alert("wrong");
-            myTextbox2.focus();
-          }
-          Q7();
-          moveMe();
-        };
-        // Requirement-8
-        function Q8() {
-          let mydivTop = document.createElement("div");
-          mydivTop.id = "Top";
-          document.body.appendChild(mydivTop);
-          for (let i = "a".charCodeAt(0); i <= "z".charCodeAt(0); i++) {
-            let myLetter = String.fromCharCode(i);
-            let myImage = document.createElement("img");
-            myImage.src = "images/letters/" + myLetter + ".png";
-            myImage.id = myLetter;
-            myImage.height = 100;
-            mydivTop.appendChild(myImage);
-          }
-
-          let mydivMiddle = document.createElement("div");
-          mydivMiddle.id = "Middle";
-          document.body.appendChild(mydivMiddle);
-          let mydivBottom = document.createElement("div");
-          mydivBottom.id = "Bottom";
-          document.body.appendChild(mydivBottom);
-        }
-        // Requirement-9/10
-        function moveMe() {
-          let images = document.getElementsByTagName("img");
-
-          for (let i = 0; i < images.length; i++) {
-            images[i].ondblclick = function () {
-              // if this clicked img is in the top:
-              if (this.nextSibling != null) {
-                this.parentNode.appendChild(this);
-              } // this IS the last item in its ol; move to the end of the next list
-              else {
-                // if this is the last THINGS item, make it the last LIKE item
-                if (this.parentNode.id == "Top") {
-                  document.getElementById("Middle").appendChild(this);
-                } else if (this.parentNode.id == "Middle") {
-                  document.getElementById("Bottom").appendChild(this);
-                } // the last item in "hate"
-                else {
-                  document.getElementById("Top").appendChild(this);
+              //Requirement-7
+              function R7() {
+                let code1 = myTextbox.value.charCodeAt(0); 
+                let code2 = myTextbox2.value.charCodeAt(0);
+                if (code2 < code1) {
+                  myTextbox.style.backgroundColor = "yellow";
+                  myTextbox2.style.backgroundColor = "yellow";
+                  alert("wrong order");
+                }
+                else{
+                  R8();
                 }
               }
-            };
-          }
-        }
-        onkeydown = mykeydown(){
-          let images = document.getElementsByTagName("img");
 
-        }
-      };
+              // Requirement-6
+              myButton.onclick = function R6() {
+                if (myTextbox.value.length > "1") {
+                  myTextbox.style.backgroundColor = "pink";
+                  alert("wrong");
+                  myTextbox.focus();
+                } else if (myTextbox2.value.length > "1") {
+                  myTextbox2.style.backgroundColor = "pink";
+                  alert("wrong");
+                  myTextbox2.focus();
+                } else if (
+                  myTextbox.value.toLowerCase() >= "a" &&
+                  myTextbox.value.toLowerCase() <= "z"
+                ) {
+                  myTextbox.style.backgroundColor = "white";
+                 
+                  R7();
+                  
+                } else if (
+                  myTextbox2.value.toLowerCase() >= "a" &&
+                  myTextbox2.value.toLowerCase() <= "z"
+                ) {
+                  myTextbox2.style.backgroundColor = "white";
+                 
+                  R7();
+                  
+                } else {
+                  myTextbox.style.backgroundColor = "pink";
+                  myTextbox2.style.backgroundColor = "pink";
+                  myTextbox.focus();
+                  alert("wrong");
+                  myTextbox2.focus();
+                }
+                
+                moveMe();
+              };
+              // Requirement-8
+              function R8() {
+                let mydivTop = document.createElement("div"); // create a div
+                mydivTop.id = "Top";   //set a id tag//
+                document.body.appendChild(mydivTop);  // put the div in the html
+                for (let i = "a".charCodeAt(0); i <= "z".charCodeAt(0); i++) {
+                  let myLetter = String.fromCharCode(i); // using for loop to get all images
+                  let myImage = document.createElement("img"); // create images
+                  myImage.src = "images/letters/" + myLetter + ".png";  // linking images
+                  myImage.id = myLetter;  // set id
+                  myImage.height = 100;  // set size
+                  mydivTop.appendChild(myImage);  // put images in the div
+                }
+
+                let mydivMiddle = document.createElement("div");
+                mydivMiddle.id = "Middle";
+                document.body.appendChild(mydivMiddle);
+                let mydivBottom = document.createElement("div");
+                mydivBottom.id = "Bottom";
+                document.body.appendChild(mydivBottom);
+              }
+              // Requirement-9/10
+              function moveMe() {
+                let images = document.getElementsByTagName("img");
+
+                for (let i = 0; i < images.length; i++) {
+                  images[i].ondblclick = function () {
+                    
+                    if (this.nextSibling != null) {
+                      this.parentNode.appendChild(this);
+                    } 
+                    else {
+                      
+                      if (this.parentNode.id == "Top") {
+                        document.getElementById("Middle").appendChild(this);
+                      } else if (this.parentNode.id == "Middle") {
+                        document.getElementById("Bottom").appendChild(this);
+                      } 
+                      else {
+                        document.getElementById("Top").appendChild(this);
+                      }
+                    }
+                  };
+                }
+              }
+            onkeydown=  function mykeydown(){
+      let userText = myTextbox.value
+
+      // the first letter of the text is: userText[0]
+      for(let i = 0; i < userText.length; i++)
+      {
+          let theLetter = userText[i].toLowerCase()   // the i-th character; e.g. the first character, then the second character...
+
+          if(theLetter >= 'a' && theLetter <= 'z')
+          {
+              let newImage = document.createElement("img")
+              newImage.src = "images/letters/" + theLetter + ".png"
+          }
+          else if (theLetter == " ")
+          {
+              document.body.appendChild(document.createElement('hr'))
+          }
+
+      }
+
+              }
+            };
     </script>
   </head>
   <body></body>
