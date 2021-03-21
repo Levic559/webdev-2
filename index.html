@@ -14,7 +14,6 @@
         myTextbox.id = "first";
         document.body.appendChild(myTextbox);
         myTextbox.focus();
-
         document.body.appendChild(document.createElement("br"));
 
         let myTextbox2 = document.createElement("input");
@@ -22,7 +21,6 @@
         myTextbox2.id = "last";
         document.body.appendChild(myTextbox2);
         myTextbox2.focus();
-
         document.body.appendChild(document.createElement("br"));
 
         let myButton = document.createElement("input");
@@ -30,11 +28,10 @@
         myButton.id = "go";
         myButton.value = "Go";
         document.body.appendChild(myButton);
-
         document.body.appendChild(document.createElement("br"));
 
         //Requirement-7
-        function checkingoder() {
+        function checkingOrder() {
           var textF = document.getElementById("first").value;
           var textL = document.getElementById("last").value;
           var textFcode = textF.toLowerCase().charCodeAt(0);
@@ -44,17 +41,17 @@
             myTextbox2.style.backgroundColor = "yellow";
             alert("wrong order");
           } else {
-            renewcontainer();
+            renewContainer();
           }
         }
 
         // Requirement-6
         myButton.onclick = function checkingInput() {
-          if ((myTextbox.value.length > "1") || (myTextbox == " ") ) {
+          if (myTextbox.value.length > "1" || myTextbox == " ") {
             myTextbox.style.backgroundColor = "pink";
             alert("wrong");
             myTextbox.focus();
-          } else if ((myTextbox2.value.length > "1") || (myTextbox2 == " ")) {
+          } else if (myTextbox2.value.length > "1" || myTextbox2 == " ") {
             myTextbox2.style.backgroundColor = "pink";
             alert("wrong");
             myTextbox2.focus();
@@ -63,34 +60,28 @@
             myTextbox.value.toLowerCase() <= "z"
           ) {
             myTextbox.style.backgroundColor = "white";
-            checkingoder();
-          } 
-          else if (
+            checkingOrder();
+          } else if (
             myTextbox.value.toLowerCase() < "a" ||
             myTextbox.value.toLowerCase() > "z"
           ) {
             myTextbox.style.backgroundColor = "pink";
             myTextbox.focus();
             alert("wrong");
-          }
-          else if (
+          } else if (
             myTextbox2.value.toLowerCase() >= "a" &&
             myTextbox2.value.toLowerCase() <= "z"
           ) {
             myTextbox2.style.backgroundColor = "white";
-            checkingoder();
-          } 
-          else if
-          (
+            checkingOrder();
+          } else if (
             myTextbox2.value.toLowerCase() < "a" ||
             myTextbox2.value.toLowerCase() > "z"
-          ) 
-          {
+          ) {
             myTextbox2.style.backgroundColor = "pink";
             myTextbox2.focus();
             alert("wrong");
-          }
-          else {
+          } else {
             myTextbox.style.backgroundColor = "pink";
             myTextbox2.style.backgroundColor = "pink";
             myTextbox.focus();
@@ -100,8 +91,9 @@
 
           moveMe();
         };
+
         // Requirement-8
-        function renewcontainer() {
+        function renewContainer() {
           var container = document.createElement("div");
           container.id = "xyz";
           var byeByeDiv = document.getElementById("xyz");
@@ -109,10 +101,11 @@
           if (byeByeDiv != null) {
             byeByeDiv.remove();
           }
-          addingdiv();
+          addingDiv();
         }
+
         // Requirement-8
-        function addingdiv() {
+        function addingDiv() {
           let container = document.createElement("div");
           container.id = "xyz";
           document.body.appendChild(container);
@@ -122,11 +115,11 @@
             divs.id = divid[i];
             container.appendChild(divs);
           }
-          addingimages();
+          addingImages();
         }
 
         // Requirement-8
-        function addingimages() {
+        function addingImages() {
           var textF = document.getElementById("first").value;
           var textL = document.getElementById("last").value;
           var textFcode = textF.toLowerCase().charCodeAt(0);
@@ -142,6 +135,7 @@
             divTop.appendChild(myImage); // put images in the div
           }
         }
+
         // Requirement-9/10
         function moveMe() {
           let images = document.getElementsByTagName("img");
@@ -162,6 +156,7 @@
             };
           }
         }
+
         // Requirement-11/12
         document.onkeydown = function mykeydown(e) {
           var textF = document.getElementById("first").value;
@@ -208,13 +203,12 @@
             var downarrow = document.getElementsByClassName("target");
             var targetId = downarrow[0].id;
             var newleftarrow = document.getElementById(targetId);
-
             if (newleftarrow.parentNode.id == "Top") {
-              document.getElementById("Bottom").appendChild(newleftarrow);
-            } else if (newleftarrow.parentNode.id == "Middle") {
-              document.getElementById("Top").appendChild(newleftarrow);
-            } else {
               document.getElementById("Middle").appendChild(newleftarrow);
+            } else if (newleftarrow.parentNode.id == "Middle") {
+              document.getElementById("Bottom").appendChild(newleftarrow);
+            } else {
+              document.getElementById("Top").appendChild(newleftarrow);
             }
           }
         };
