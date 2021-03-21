@@ -116,7 +116,7 @@
           let container = document.createElement("div");
           container.id = "xyz";
           document.body.appendChild(container);
-          let divid = ["top", "middle", "bottom"];
+          let divid = ["Top", "Middle", "Bottom"];
           for (let i = 0; i < 3; i++) {
             let divs = document.createElement("div");
             divs.id = divid[i];
@@ -138,8 +138,8 @@
             myImage.src = "images/letters/" + myLetter + ".png"; // linking images
             myImage.id = myLetter.toUpperCase().charCodeAt(0); // set id
             myImage.height = 100; // set size
-            var divtop = document.getElementById("top");
-            divtop.appendChild(myImage); // put images in the div
+            var divTop = document.getElementById("Top");
+            divTop.appendChild(myImage); // put images in the div
           }
         }
         // Requirement-9/10
@@ -151,12 +151,12 @@
               if (this.nextSibling != null) {
                 this.parentNode.appendChild(this);
               } else {
-                if (this.parentNode.id == "top") {
-                  document.getElementById("middle").appendChild(this);
-                } else if (this.parentNode.id == "middle") {
-                  document.getElementById("bottom").appendChild(this);
+                if (this.parentNode.id == "Top") {
+                  document.getElementById("Middle").appendChild(this);
+                } else if (this.parentNode.id == "Middle") {
+                  document.getElementById("Bottom").appendChild(this);
                 } else {
-                  document.getElementById("top").appendChild(this);
+                  document.getElementById("Top").appendChild(this);
                 }
               }
             };
@@ -187,34 +187,34 @@
           }
 
           if (e.which == 37) {
-            var arrow = document.getElementsByClassName("target");
-            var newid = arrow[0].id;
-            var newarrow = document.getElementById(newid);
-            if (newarrow.previousSibling != null) {
-              newarrow.parentNode.insertBefore(
-                newarrow,
-                newarrow.previousSibling
+            var leftarrow = document.getElementsByClassName("target");
+            var targetId = leftarrow[0].id;
+            var newleftarrow = document.getElementById(targetId);
+            if (newleftarrow.previousSibling != null) {
+              newleftarrow.parentNode.insertBefore(
+                newleftarrow,
+                newleftarrow.previousSibling
               );
             } else {
-              if (newarrow.parentNode.id == "top") {
-                document.getElementById("bottom").appendChild(newarrow);
-              } else if (newarrow.parentNode.id == "middle") {
-                document.getElementById("top").appendChild(newarrow);
+              if (newleftarrow.parentNode.id == "Top") {
+                document.getElementById("Bottom").appendChild(newleftarrow);
+              } else if (newleftarrow.parentNode.id == "Middle") {
+                document.getElementById("Top").appendChild(newleftarrow);
               } else {
-                document.getElementById("middle").appendChild(newarrow);
+                document.getElementById("Middle").appendChild(newleftarrow);
               }
             }
           } else if (e.which == 40) {
-            var arrow = document.getElementsByClassName("target");
-            var newid = arrow[0].id;
-            var newarrow = document.getElementById(newid);
+            var downarrow = document.getElementsByClassName("target");
+            var targetId = downarrow[0].id;
+            var newleftarrow = document.getElementById(targetId);
 
-            if (newarrow.parentNode.id == "top") {
-              document.getElementById("bottom").appendChild(newarrow);
-            } else if (newarrow.parentNode.id == "middle") {
-              document.getElementById("top").appendChild(newarrow);
+            if (newleftarrow.parentNode.id == "Top") {
+              document.getElementById("Bottom").appendChild(newleftarrow);
+            } else if (newleftarrow.parentNode.id == "Middle") {
+              document.getElementById("Top").appendChild(newleftarrow);
             } else {
-              document.getElementById("middle").appendChild(newarrow);
+              document.getElementById("Middle").appendChild(newleftarrow);
             }
           }
         };
