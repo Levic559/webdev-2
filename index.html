@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1</title>
+    <script>
+
+        window.onload = function()
+        {
+            // build and display three input elements
+
+            let textBoxFirst = document.createElement('input')
+            textBoxFirst.id = 'first'
+            textBoxFirst.type = 'text'
+            document.body.appendChild(textBoxFirst)
+            textBoxFirst.focus()
+
+            document.body.appendChild(document.createElement('br'))
+
+            let textBoxLast = document.createElement('input')
+            textBoxLast.id = 'last'
+            textBoxLast.type = 'text'
+            document.body.appendChild(textBoxLast)
+
+            document.body.appendChild(document.createElement('br'))
+
+            let button = document.createElement('input')
+            button.id = 'go'
+            button.type = 'button'
+            button.value = 'Go'
+            document.body.appendChild(button)
+
+            // when buttom is clicked, check the imput value and get the letter range
+
+            button.onclick = function()
+            {
+                let letterFirstBox = document.getElementById('first').value
+                    letterFirstBox = letterFirstBox.toLowerCase()
+                
+
+                let letterLastBox = document.getElementById('last').value
+                    letterLastBox = letterLastBox.toLowerCase()
+
+                textBoxFirst.style.backgroundColor = 'white'
+                textBoxLast.style.backgroundColor = 'white'
+
+
+                if ( letterFirstBox.length != 1 )
+                {
+                    alert ( 'Wrong' )
+                    textBoxFirst.style.backgroundColor = 'yellow'
+                    textBoxFirst.focus()
+                }
+                else if ( letterLastBox.length != 1 )
+                {
+                    alert ( 'Wrong' )
+                    textBoxLast.style.backgroundColor = 'yellow'
+                    textBoxLast.focus()
+                }
+                else if ( letterFirstBox < 'a' || letterFirstBox > 'z')
+                {
+                    alert ( 'Wrong' )
+                    textBoxFirst.style.backgroundColor = 'yellow'
+                    textBoxFirst.focus()
+                }
+                else if ( letterLastBox < 'a' || letterLastBox > 'z')
+                {
+                    alert ( 'Wrong' )
+                    textBoxLast.style.backgroundColor = 'yellow'
+                    textBoxLast.focus()
+                }
+                else if ( letterFirstBox > letterLastBox )
+                {
+                    alert ( 'Wrong order ')
+                    textBoxFirst.style.backgroundColor = 'yellow'
+                    textBoxLast.style.backgroundColor = 'yellow'
+                }
+                else
+                {
+                    
+                    let removeItem = document.getElementsByTagName('input')
+                    for (i = removeItem.length -1; i >= 0; i--)
+                    {
+                        removeItem[i].remove()
+                    }
+
+                    let removeBr = document.getElementsByTagName('br')
+                    for (i = removeBr.length - 1; i >= 0; i-- )
+                    {
+                        removeBr[i].remove()
+                    }
+
+                    displayLetter()
+
+                }
+
+                // when input boxes have valid data built three div and add letter images
+
+                function displayLetter() 
+                {
+                    let newDivTop = document.createElement('div')
+                    let newDivMiddle = document.createElement('div')
+                    let newDivBottom = document.createElement('div')
+
+                    newDivTop.id = 'top'
+                    newDivMiddle.id = 'middle'
+                    newDivBottom.id = 'bottom'
+
+                    document.body.appendChild(newDivTop)
+                    document.body.appendChild(document.createElement('br'))
+                    document.body.appendChild(newDivMiddle)
+                    document.body.appendChild(document.createElement('br'))
+                    document.body.appendChild(newDivBottom)
+ 
+                    
+                    let displayDiv = document.getElementById('top')  
+
+                    for ( i = letterFirstBox.charCodeAt(0); i <= letterLastBox.charCodeAt(0); i++)
+                    {
+                        let letter = String.fromCharCode(i)
+                        let displayImg = document.createElement('img')
+                        
+                        displayImg.height = 100
+                        displayImg.src = 'letters/' + letter + '.png'
+
+                        displayImg.id = letter
+                        
+                        
+                        displayDiv.appendChild(displayImg)
+                    }
+                    
+                }
+
+                // Move letter to left or to another div
+
+                let allImgs = document.getElementsByTagName('img')
+
+                for ( let i = 0; i < allImgs.length; i++ )
+                {
+                    allImgs[i].onclick = function()
+                    {                      
+
+                        if (this.parentNode.id == 'bottom')
+                        {
+                            if ( this.previousSibling == null )
+                            {
+                                document.getElementById('middle').appendChild(this)
+                            }
+                            else
+                            {
+                                let preSibling = this.previousSibling
+                                preSibling.insertAdjacentElement('beforebegin', this)
+                            }
+
+                        }
+                        else if ( this.parentNode.id == 'middle')
+                        {
+                            if ( this.previousSibling == null )
+                            {
+                                document.getElementById('top').appendChild(this)
+                            }
+                            else
+                            {
+                                let preSibling = this.previousSibling
+                                preSibling.insertAdjacentElement('beforebegin', this)
+                            }
+
+                        }
+                        else if ( this.parentNode.id == 'top' )
+                        {
+                            if ( this.previousSibling == null )
+                            {
+                                document.getElementById('bottom').appendChild(this)
+                            }
+                            else
+                            {
+                                let preSibling = this.previousSibling
+                                preSibling.insertAdjacentElement('beforebegin', this)
+                            }
+                        }
+                        
+                    }
+                }
+
+                // Highlight selected letter border and move it to left or to another div
+
+                // Because I can't get the 'left arrow' and 'down arrow' keys code on my mac keyboard, I use ','(44) and '.'(46) keys for alternative
+                
+                onkeypress = function(k)
+                {
+                    for ( let i = 0; i < allImgs.length; i++ )
+                    {
+                        allImgs[i].style = null
+                    }
+                    
+                    let keyCode = k.which
+                    let keyName = String.fromCharCode(keyCode)
+                    
+                    if( keyName >= letterFirstBox && keyName <= letterLastBox )
+                    {
+                        let keyImg = document.getElementById(keyName)
+                        keyImg.style = 'border: solid red 20px;' 
+                        
+                        onkeypress = function(a)
+                        {
+                            let arrowCode = a.which
+                            
+
+                            if ( arrowCode == 44 || arrowCode == 46 )
+                            {
+                                switch ( arrowCode )
+                                {
+                                    case 44:
+                                        if( keyImg.previousSibling != null)
+                                        {
+                                            let keyImgPreSibling = keyImg.previousSibling
+                                            keyImgPreSibling.insertAdjacentElement('beforebegin', keyImg)
+
+                                        }
+                                        else
+                                        {
+                                            alert( 'Can\'t move anymore!')
+                                        }
+                                        break
+
+                                    case 46:
+                                        if ( keyImg.parentNode.id == 'top' )
+                                        {
+                                            document.getElementById('middle').appendChild(keyImg)
+                                        }
+                                        else if ( keyImg.parentNode.id == 'middle' )
+                                        {
+                                            document.getElementById('bottom').appendChild(keyImg)
+                                        }
+                                        else if ( keyImg.parentNode.id == 'bottom' )
+                                        {
+                                            document.getElementById('top').appendChild(keyImg)
+                                        }
+                                       
+                                }
+
+                            }
+                            else
+                            {
+                                alert('Invalid Key!')
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        alert('Out of range!')
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+</head>
+<body>
+</body>
+</html>
