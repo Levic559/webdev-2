@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assigment1</title>
     <script>
-      //  Levi
+      //  Levi   partner:Warren
+      //We think there are many ways to do the same feature. 
+      //Although we code individually, we exchange the idea on GitHub. 
+      // We think there are many ways to do the same feature. 
+      // Although we code individually, we exchange the idea on GitHub. 
+      // Finally, we decide to not use the same code but uploading an own version.
+      
       // Requirement-5
       onload = function () {
         let myTextbox = document.createElement("input");
@@ -41,7 +47,7 @@
             myTextbox2.style.backgroundColor = "yellow";
             alert("wrong order");
           } else {
-            renewContainer();
+            reContainer();
           }
         }
 
@@ -93,7 +99,7 @@
         };
 
         // Requirement-8
-        function renewContainer() {
+        function reContainer() {
           var container = document.createElement("div");
           container.id = "xyz";
           var byeByeDiv = document.getElementById("xyz");
@@ -128,7 +134,7 @@
           for (let i = textFcode; i <= textLcode; i++) {
             let myLetter = String.fromCharCode(i); // using for loop to get all images
             let myImage = document.createElement("img"); // create images
-            myImage.src = "images/letters/" + myLetter + ".png"; // linking images
+            myImage.src = "letters/" + myLetter + ".png"; // linking images
             myImage.id = myLetter.toUpperCase().charCodeAt(0); // set id
             myImage.height = 100; // set size
             var divTop = document.getElementById("Top");
@@ -158,7 +164,7 @@
         }
 
         // Requirement-11/12
-        document.onkeydown = function mykeydown(e) {
+        onkeydown = function mykeydown(e) {
           var textF = document.getElementById("first").value;
           var textL = document.getElementById("last").value;
           var textFcode = textF.toUpperCase().charCodeAt(0);
