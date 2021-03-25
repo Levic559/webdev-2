@@ -5,15 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assigment1</title>
+    <style>
+      .aim {
+        border: 15px solid lightblue;
+      }
+    </style>
     <script>
       //  Levi   partner:Warren
-      //We think there are many ways to do the same feature. 
-      //Although we code individually, we exchange the idea on GitHub. 
-      // We think there are many ways to do the same feature. 
-      // Although we code individually, we exchange the idea on GitHub. 
+      //We think there are many ways to do the same feature.
+      //Although we code individually, we exchange the idea on GitHub.
+      // We think there are many ways to do the same feature.
+      // Although we code individually, we exchange the idea on GitHub.
       // https://github.com/Levic559/webdev-2.git
       // Finally, we decide to not use the same code but uploading an own version.
-     
+
       // Requirement-5
       onload = function () {
         let myTextbox = document.createElement("input");
@@ -103,10 +108,10 @@
         function reContainer() {
           var container = document.createElement("div");
           container.id = "xyz";
-          var byeByeDiv = document.getElementById("xyz");
-          console.log(byeByeDiv);
-          if (byeByeDiv != null) {
-            byeByeDiv.remove();
+          var byeByemyDiv = document.getElementById("xyz");
+          console.log(byeByemyDiv);
+          if (byeByemyDiv != null) {
+            byeByemyDiv.remove();
           }
           addingDiv();
         }
@@ -165,33 +170,35 @@
         }
 
         // Requirement-11/12
-        onkeydown = function mykeydown(e) {
+        document.onkeydown = function mykeydown(e) {
           var textF = document.getElementById("first").value;
           var textL = document.getElementById("last").value;
           var textFcode = textF.toUpperCase().charCodeAt(0);
           var textLcode = textL.toUpperCase().charCodeAt(0);
 
           for (let i = textFcode; i <= textLcode; i++) {
-            var comparison = document.getElementById(i);
-            if (e.which >= 65 && e.which <= 90) {
-              if ((e.which = comparison.id)) {
-                var allimgs = document.getElementById(i);
-                allimgs.style.border = "none";
-                var allclass = document.getElementsByClassName("target");
-                if (allclass.length != 0) {
-                  allclass[0].classList.remove("target");
+            var match = document.getElementById(i);
+            if (e.which > 64 && e.which < 91) {
+              if ((e.which = match.id)) {
+                // var select = document.getElementById(i);
+                // select.style.border = "none";
+
+                var selectclass = document.getElementsByClassName("aim");
+                if (selectclass.length != 0) {
+                  selectclass[0].classList.remove("aim");
                 }
-                var highlight = document.getElementById(e.which);
-                highlight.classList.add("target");
-                highlight.style.border = "15px solid lightblue ";
+
+                var selectImg = document.getElementById(e.which);
+                selectImg.classList.add("aim");
+                // selectImg.style.border = "15px solid lightblue ";
               }
             }
           }
 
           if (e.which == 37) {
-            var leftarrow = document.getElementsByClassName("target");
-            var targetId = leftarrow[0].id;
-            var newleftarrow = document.getElementById(targetId);
+            var leftarrow = document.getElementsByClassName("aim");
+            var aimId = leftarrow[0].id;
+            var newleftarrow = document.getElementById(aimId);
             if (newleftarrow.previousSibling != null) {
               newleftarrow.parentNode.insertBefore(
                 newleftarrow,
@@ -207,9 +214,9 @@
               }
             }
           } else if (e.which == 40) {
-            var downarrow = document.getElementsByClassName("target");
-            var targetId = downarrow[0].id;
-            var newleftarrow = document.getElementById(targetId);
+            var downarrow = document.getElementsByClassName("aim");
+            var aimId = downarrow[0].id;
+            var newleftarrow = document.getElementById(aimId);
             if (newleftarrow.parentNode.id == "Top") {
               document.getElementById("Middle").appendChild(newleftarrow);
             } else if (newleftarrow.parentNode.id == "Middle") {
