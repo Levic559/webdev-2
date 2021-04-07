@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game3</title>
+    <script>
+      alienMoveTimer = null;
+      stepNumber = 0;
+      function takeRStep() {
+        stepNumber = stepNumber + 1;
+        if (stepNumber >= 30) {
+          stepNumber = 0;
+        }
+        alienImage.src = "alien/alienrwalk" + stepNumber + ".gif";
+      }
+      function takeLStep() {
+        stepNumber = stepNumber + 1;
+        if (stepNumber >= 30) {
+          stepNumber = 0;
+        }
+        alienImage.src = "alien/alienlwalk" + stepNumber + ".gif";
+      }
+      function moveAlienRight() {
+        
+        if (alienImage.style.left === "715px") {
+          clearInterval(alienMoveTimer);
+          alienMoveTimer == null;
+        let  alienMoveTimer = setInterval(function (){
+          takeLStep();
+          alienImage.style.left = parseInt(alienImage.style.left) - 1 + "px";},20)
+        // moveAlienLeft()
+        }
+        
+         takeRStep();
+        alienImage.style.left = parseInt(alienImage.style.left) + 1 + "px";
+      }
+      function moveAlienLeft() {
+        alienImage.style.left =8
+        if (alienImage.style.left === "8px") {
+          clearInterval(alienMoveTimer);
+          alienMoveTimer == null;
+         let alienMoveTimer = setInterval(function (){
+          takeRStep();
+          alienImage.style.left = parseInt(alienImage.style.left) + 1 + "px";},20)
+        // moveAlienRight()
+        }
+        
+         takeLStep();
+        alienImage.style.left = parseInt(alienImage.style.left) - 1 + "px";
+      }
+
+      
+      // =========================================//
+      // =========================================//
+      function alienJumpC() {
+        
+        let start = Date.now();
+        let alienMoveTimer = setInterval(function () {
+          let timePassed = Date.now() - start;
+          if (timePassed > 500 ) {
+            clearInterval(alienMoveTimer); // finish the animation after 0.5 seconds
+            alienMoveTimer == null;
+            if (timePassed > 500) {
+              let alienMoveTimer = setInterval(function () {
+                let timePassed2 = Date.now() - start;
+                if (timePassed2 > 1000  ) {
+                  clearInterval(alienMoveTimer);
+                  alienMoveTimer == null;
+                }
+                alienImage.style.top =
+                  parseInt(alienImage.style.top) + 2 + "px";
+              }, 20);
+              
+            }
+          }
+          alienImage.style.top = parseInt(alienImage.style.top) - 2 + "px";
+          // alienImage.style.left = parseInt(alienImage.style.left) + 2 + "px";
+        }, 20);
+      }
+      //=========================================//
+      function toggleMoving(e) {
+        //=========================================//
+        // when top-arrow key press
+        //=========================================//
+        if (e.which == 38) {
+          // 38 is the top-arrow key
+          if (alienMoveTimer == null) {
+            alienJumpC()
+          }
+         else {
+          clearInterval(alienMoveTimer);
+          alienMoveTimer = null;
+        }
+      }
+        // when right-arrow key press
+        // =========================================//
+        if (e.which == 39) {
+          // 39 is the right-arrow key
+          if (alienMoveTimer == null ) {
+            alienMoveTimer = setInterval(moveAlienRight, 20);
+        
+          
+          }
+        } else if (e.which == 37) {
+          clearInterval(alienMoveTimer);
+          alienMoveTimer = setInterval(moveAlienLeft, 20);
+         
+        }
+        // =========================================//
+        // when left-arrow key press
+        // =========================================//
+        if (e.which == 37) {
+          // 37 is the left-arrow key
+          if (alienMoveTimer == null ) {
+            alienMoveTimer = setInterval(moveAlienLeft, 20);
+            
+          }
+        }else if (e.which == 39) {
+          clearInterval(alienMoveTimer);
+          alienMoveTimer = setInterval(moveAlienRight, 20);
+          
+        }
+     
+        //=========================================//
+        // when  down-arrow key press
+        //=========================================//
+        else if (e.which == 40) {
+          // 40 is the down-arrow key
+          if (alienMoveTimer !== null) {
+            clearInterval(alienMoveTimer);
+            alienMoveTimer = null;
+          }
+        }
+      }
+      //=========================================//
+
+      function setUpTimers() {
+        alienImage = document.getElementById("a");
+        window.onkeydown = toggleMoving;
+      }
+      window.onload = setUpTimers;
+    </script>
+  </head>
+  <body>
+    <img
+      src="alien/alienrwalk0.gif"
+      id="a"
+      style="position: absolute; left: 8px; top: 300px"
+    />
+    <div
+      class="big_box"
+      style="
+        position: absolute;
+        left: 800px;
+        top: 195px;
+        background-color: grey;
+        width: 50px;
+        height: 200px;
+      "
+    ></div>
+    <img src="little_box.svg" id="little_box" style="position: absolute; left: 100px; top: 340px ;width: 40px; height:40px" />
+  </body>
+</html>
